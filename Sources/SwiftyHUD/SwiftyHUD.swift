@@ -54,6 +54,7 @@ extension SwiftyHUD {
     ///   By default `nil`, the SwiftyHUD will not be hidden.
     ///   - completion: Closure called when the showing animation is complete.
     ///   If the `animation` is `nil`, the closure will be called immediately after the showing.
+    @MainActor
     public static func show(
         _ hud: SwiftyHUD,
         in window: UIView,
@@ -81,6 +82,7 @@ extension SwiftyHUD {
     ///   By default `nil`, the SwiftyHUD will not be hidden.
     ///   - completion: Closure called when the showing animation is complete.
     ///   If the `animation` is `nil`, the closure will be called immediately after the showing.
+    @MainActor
     public static func show(
         _ hud: SwiftyHUD,
         animation: HUDAnimation? = .default,
@@ -100,6 +102,7 @@ extension SwiftyHUD {
     /// - Parameters:
     ///   - window: The window that is going to be searched for a SwiftyHUD subview.
     ///   - completion: Called after the SwiftyHUD is hidden.
+    @MainActor
     public static func hide(
         in window: UIView,
         completion: (() -> Void)? = nil
@@ -113,6 +116,7 @@ extension SwiftyHUD {
     /// Finds the top-most SwiftyHUD subview in first key `UIWindow` that hasn't finished and hides it.
     /// The counterpart to this method is ``show(_:animation:duration:completion:)``.
     /// - Parameter completion: Called after the SwiftyHUD is hidden.
+    @MainActor
     public static func hide(completion: (() -> Void)? = nil) {
         HUDView.hideHUD(completion: completion)
     }
