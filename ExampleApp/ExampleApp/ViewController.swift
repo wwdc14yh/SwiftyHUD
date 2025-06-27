@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         view.addSubview(hudContentView)
-        hudContentView.backgroundColor = .secondarySystemBackground
+        hudContentView.backgroundColor = .systemBlue
 
         func call() {
             Task {
@@ -25,7 +25,16 @@ class ViewController: UIViewController {
                 call()
             }
         }
-        call()
+//        call()
+        
+        Task {
+            SwiftyHUD.show(.toast("Hello", position: .bottom(10)), in: hudContentView)
+            try await Task.sleep(for: .seconds(2))
+            SwiftyHUD.show(.text(.default(text: "Hello1"), style: .init(position: .top(10))), in: hudContentView)
+            try await Task.sleep(for: .seconds(2))
+            SwiftyHUD.show(.text(.default(text: "Hello2"), style: .init(position: .default)), in: hudContentView, duration: 2)
+        }
+        
     }
 
     func requestHUD() async {

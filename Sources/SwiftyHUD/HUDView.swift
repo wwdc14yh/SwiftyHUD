@@ -9,6 +9,8 @@ internal final class HUDView: UIView {
     #endif
 
     private let progressView = ProgressView()
+    
+    private var layoutYConstraint: NSLayoutConstraint?
 
     private var animation: HUDAnimation?
     private var timer: Timer?
@@ -40,7 +42,7 @@ internal final class HUDView: UIView {
 
         let constraints = [
             progressToolbar.centerXAnchor.constraint(equalTo: centerXAnchor),
-            progressToolbar.centerYAnchor.constraint(equalTo: centerYAnchor)
+//            progressToolbar.centerYAnchor.constraint(equalTo: centerYAnchor)
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -69,7 +71,19 @@ internal final class HUDView: UIView {
         progressToolbar.layer.cornerRadius = hud.style.cornerRadius
         progressToolbar.backgroundColor = hud.style.backgroundColor
         backgroundColor = hud.style.dimmingColor
-
+        if let layoutYConstraint {
+            removeConstraint(layoutYConstraint)
+        }
+        let offset = hud.style.position.offset
+        switch hud.style.position.point {
+        case .top:
+            layoutYConstraint = progressView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: offset)
+        case .center:
+            layoutYConstraint = progressView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: offset)
+        case .bottom:
+            layoutYConstraint = progressView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -offset)
+        }
+        layoutYConstraint?.isActive = true
         layoutIfNeeded()
     }
 
