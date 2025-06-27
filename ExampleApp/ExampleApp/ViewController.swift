@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 //        call()
         
         Task {
-            SwiftyHUD.show(.toast("Hello", position: .bottom(10)), in: hudContentView)
+            SwiftyHUD.showToast("Hello", in: hudContentView)
             try await Task.sleep(for: .seconds(2))
             SwiftyHUD.show(.text(.default(text: "Hello1"), style: .init(position: .top(10))), in: hudContentView)
             try await Task.sleep(for: .seconds(2))

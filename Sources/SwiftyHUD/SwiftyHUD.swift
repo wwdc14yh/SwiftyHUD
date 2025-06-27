@@ -41,6 +41,34 @@ public struct SwiftyHUD: CustomStringConvertible {
 }
 
 extension SwiftyHUD {
+    
+    @MainActor
+    public static func showToast(
+        _ message: String,
+        position: HUDStyle.Position = .bottom(15),
+        backgroundColor: UIColor = .clear,
+        dimmingColor: UIColor = .clear,
+        in window: UIView? = nil,
+        duration: TimeInterval = 1.5,
+        completion: (() -> Void)? = nil
+    ) {
+        if let window {
+            HUDView.showHUD(.text(.default(text: message),
+                                  style: HUDStyle(backgroundColor: backgroundColor,
+                                                  dimmingColor: dimmingColor,
+                                                  position: position)),
+                            in: window,
+                            animation: .default,
+                            duration: duration, completion: completion)
+        } else {
+            HUDView.showHUD(.text(.default(text: message),
+                                  style: HUDStyle(backgroundColor: backgroundColor,
+                                                  dimmingColor: dimmingColor,
+                                                  position: position)),
+                            animation: .default,
+                            duration: duration, completion: completion)
+        }
+    }
 
     /// Adds the specified `hud` to `window` and displays it.
     /// The counterpart of this method is ``hide(in:completion:)``.
