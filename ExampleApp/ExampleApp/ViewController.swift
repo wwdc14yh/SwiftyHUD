@@ -28,11 +28,11 @@ class ViewController: UIViewController {
 //        call()
         
         Task {
-            SwiftyHUD.showToast("Hello", in: hudContentView)
-            try await Task.sleep(for: .seconds(2))
-            SwiftyHUD.show(.text(.default(text: "Hello1"), style: .init(position: .top(10))), in: hudContentView)
-            try await Task.sleep(for: .seconds(2))
-            SwiftyHUD.show(.text(.default(text: "Hello2"), style: .init(position: .default)), in: hudContentView, duration: 2)
+            SwiftyHUD.showToast("Hello安师大防晒服的根深蒂固是的发个二个", in: hudContentView, duration: 5)
+//            try await Task.sleep(for: .seconds(2))
+//            SwiftyHUD.show(.text(.default(text: "Hello1"), style: .init(position: .top(10))), in: hudContentView)
+//            try await Task.sleep(for: .seconds(2))
+//            SwiftyHUD.show(.text(.default(text: "Hello2"), style: .init(position: .default)), in: hudContentView, duration: 2)
         }
         
     }
